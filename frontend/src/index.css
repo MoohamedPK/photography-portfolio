@@ -1,5 +1,28 @@
+@font-face {
+  font-family:Doto;
+  font-family: Asset;
+  font-family: Dirty;
+  font-family: Project;
+  src: url('../src/assets/fonts/Anton-Regular.ttf');
+  src: url('../src/assets/fonts/Asset-Regular.ttf');
+  src: url('../src/assets/fonts/Dirtyline\ 36daysoftype\ 2022.otf');
+  src: url('../src/assets/fonts/Projekt\ Blackbird\ v2.otf');
+}
+
 @import "tailwindcss";
 
+@theme {
+  --font-doto: Doto;
+  --font-Dirty: Dirty;
+  --font-asset: Asset;
+  --font-project: Project;
+  --color-primary:#8ecd68;
+  --color-secondary:#b4dbee;
+}
+
+body {
+  background-color: #13161b;
+}
 
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

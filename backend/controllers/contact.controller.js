@@ -5,7 +5,7 @@ const contactController = async(req, res) => {
     
     try {
         const info = req.body
-        const newContact = new Contact({...info});
+        const newContact = new Contact({...info})
 
         await newContact.save();
         res.status(200).json({success: true, message: "Info sent successfully"})
