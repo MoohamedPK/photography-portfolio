@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "../assets/images/header-large.jpg"
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
@@ -11,25 +11,23 @@ function Master() {
     const imageMaskRef = useRef(null);
     const textHolderRef = useRef(null);
 
-    useEffect(() => {
-      gsap.to(textHolderRef.current, {
-        autoAlpha: 1,
-        duration: 1,
-        ease: "power2.inOut",
-      });
-
-      gsap.to(imageMaskRef.current, {
-        autoAlpha: 1,
-        duration: 1,
-        ease: "power2.inOut",
-        delay: 0.5, // Adjust the delay as needed
-      });
-    }, []);
-
     useGSAP(() => {
         gsap.set(imageMaskRef.current, {
           clipPath: "polygon(40% 0, 60% 0, 60% 100%, 40% 100%)",
           scale: 0.5
+        });
+
+        gsap.to(textHolderRef.current, {
+          autoAlpha: 1,
+          duration: 1,
+          ease: "power2.inOut",
+        });
+
+        gsap.to(imageMaskRef.current, {
+          autoAlpha: 1,
+          duration: 1,
+          ease: "power2.inOut",
+          delay: 0.5, // Adjust the delay as needed
         });
 
         const tl = gsap.timeline({
@@ -60,7 +58,7 @@ function Master() {
   return (
     <div
       id="content-holder"
-      className="relative w-full h-screen overflow-hidden bg-black perspective-distant"
+      className="relative w-full h-screen overflow-hidden bg-black perspective-distant z-10"
     >
       <div ref={imageMaskRef} className="mask-clip invisible">
         <div className="img-holder">
