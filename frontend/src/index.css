@@ -11,15 +11,4 @@
 
 @layer utilities {
 
-  .text-line {
-    transform: translate3d(15px, 51px, -60px) rotateY(60deg) rotateX(-40deg);
-    opacity: 0;
-  }
-
-  .layout {
-    background: url("./assets/images/header-large.jpg");
-    background-repeat: no-repeat;
-    background-size:cover;
-    
-  }
 }

@@ -17,7 +17,7 @@ function ImageBox({img, containerClass}) {
         trigger: ImageBox.current,
         start: "top 80%",
         end: "bottom 20%",
-        
+        toggleActions: "play none none reverse"
       }
     })
 
@@ -30,11 +30,16 @@ function ImageBox({img, containerClass}) {
   }, []);
 
   return (
-    <div ref={ImageBox}  className={`w-full h-screen relative cursor-pointer`}>
+    <div ref={ImageBox} className={`w-full h-screen relative cursor-pointer`}>
       <div className="image-box-content"></div>
 
-      <div  className={` absolute ${containerClass}`}>
-        <img ref={Image} className="w-full h-full object-cover brightness-70" src={img} alt=""/>
+      <div className={`w-[400px] h-[500px] absolute ${containerClass}`}>
+        <img
+          ref={Image}
+          className="w-full h-full object-cover brightness-70"
+          src={img}
+          alt=""
+        />
       </div>
     </div>
   );

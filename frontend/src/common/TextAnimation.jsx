@@ -18,7 +18,7 @@ function TextAnimation({ text }) {
   return (
     <div
       ref={textRef}
-      className="absolute top-[50%] left-[50%] translate-x-[-45%] translate-y-[-50%] text-[90px] font-bold font-Robert uppercase w-full leading-[1.5] text-pink-100/90 mix-blend-difference"
+      className="absolute top-[50%] left-[50%] translate-x-[-45%] translate-y-[-50%] text-[90px] font-bold font-Robert uppercase w-full leading-[1.5] text-white/70 mix-blend-difference"
     >
       {text.split("<br />").map((line, i) => (
         <div className="text-line" key={i}>

@@ -1,5 +1,5 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
-import Contact from "../pages/Contact"
+// import Contact from "../pages/Contact"
 import MainLayout from "../pages/MainLayout"
 
 
@@ -10,10 +10,10 @@ const router = createBrowserRouter([
         index: true,
         
     },
-    {
-        path: '/contact',
-        element: <Contact/>
-    }
+    // {
+    //     path: '/contact',
+    //     element: <Contact/>
+    // }
 ])
 
 function AppRoutes() {
