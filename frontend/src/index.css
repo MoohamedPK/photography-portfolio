@@ -5,12 +5,24 @@
   src: url('/fonts/robert-medium.woff2');
 }
 
+@font-face {
+  font-family: Wagon;
+  src: url('/fonts/Wagon-Bold.otf');
+}
+
 @theme {
-  --font-Robert: Robert
+  --font-Robert: Robert;
+  --font-Wagon: Wagon;
 }
 
 @layer utilities {
-  .overlay {
+  .img-mask img {
+    filter: grayscale();
+    transition: all 0.3s ;
     
+  }
+
+  .img-mask:hover img {
+    filter: none;
   }
 }

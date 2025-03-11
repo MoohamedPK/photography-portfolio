@@ -1,15 +1,21 @@
 import NavBar from "../components/NavBar"
-import Master from "./Master"
+import Home from "./Home"
+import About from "../components/About"
+import LenisSmoothScroll from "../services/LenisSmoothScroll"
+
 
 function MainLayout() {
   return (
-    <div className="font-Robert">
+    <LenisSmoothScroll className="font-Robert">
       <NavBar/>
-      <Master/>
+      <Home/>
+      <About/>
 
-        {/* gallery */}
-        <div className="bg-pink-300 h-screen w-full relative"></div>
-    </div>
+
+
+      {/* footer */}
+      <div>footer</div>
+    </LenisSmoothScroll>
   )
 }
 

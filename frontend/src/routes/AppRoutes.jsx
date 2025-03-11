@@ -7,8 +7,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout/>,
-        index: true,
-        
+        index: true
     },
     // {
     //     path: '/contact',

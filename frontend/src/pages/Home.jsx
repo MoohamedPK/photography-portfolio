@@ -3,10 +3,11 @@ import Image from "../assets/images/header-large.jpg"
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import {useGSAP} from "@gsap/react"
+import About from "../components/About";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function Master() {
+function Home() {
 
     const imageMaskRef = useRef(null);
     const textHolderRef = useRef(null);
@@ -78,8 +79,12 @@ function Master() {
         </div>
 
       </div>
+
+
+      {/*  */}
+      <About/>
     </div>
   );
 }
 
-export default Master
+export default Home

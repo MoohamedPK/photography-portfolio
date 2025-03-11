@@ -4,7 +4,7 @@ import Lenis from "@studio-freight/lenis";
 const SmoothScroll = ({ children }) => {
   useEffect(() => {
     const lenis = new Lenis({
-      lerp: 0.10, // Adjust for smoother scrolling (0.1 to 0.3 is a good range)
+      lerp: 0.3, // Adjust for smoother scrolling (0.1 to 0.3 is a good range)
       smooth: true,
       smoothTouch: true,
       direction: "vertical",

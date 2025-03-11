@@ -1,4 +1,3 @@
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useRef, useState, useEffect } from "react";
@@ -20,23 +19,23 @@ function NavBar() {
     if (isOpen) {
       gsap.fromTo(
         linkHolderRefs.current,
-        { opacity: 0, y: 20 }, // Start state
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
           duration: 0.6,
           ease: "power3.out",
-          stagger: 0.1, // Delay between each item
+          stagger: 0.1,
         }
       );
     }
-  }, [isOpen]); // Run when `isOpen` changes
+  }, [isOpen]);
 
   return (
     <div className="w-full h-[80px] fixed px-6 z-80 text-white">
       <header className="w-full h-full flex justify-between items-center">
         <div className="logo ">
-          <h1 className="text-4xl">HML</h1>
+          <h1 className="text-4xl font-Wagon">HML</h1>
         </div>
 
         <ul className="nav-links uppercase  items-center space-x-8 md:flex hidden">
@@ -78,7 +77,5 @@ function NavBar() {
     </div>
   );
 }
-
-//px-3 py-1 hover:bg-white/80 hover:text-black transition-all duration-300
 
 export default NavBar
