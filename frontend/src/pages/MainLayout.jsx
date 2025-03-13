@@ -2,6 +2,7 @@ import NavBar from "../components/NavBar"
 import Home from "./Home"
 import About from "../components/About"
 import LenisSmoothScroll from "../services/LenisSmoothScroll"
+import FeaturedWork from "../components/FeaturedWork"
 
 
 function MainLayout() {
@@ -10,11 +11,11 @@ function MainLayout() {
       <NavBar/>
       <Home/>
       <About/>
-
+      <FeaturedWork/>
 
 
       {/* footer */}
-      <div>footer</div>
+      <div className="h-screen">footer</div>
     </LenisSmoothScroll>
   )
 }
