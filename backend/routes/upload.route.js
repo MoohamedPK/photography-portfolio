@@ -2,12 +2,10 @@ import {Router} from "express"
 import upload from "../middlewares/multer.middleware.js"
 import {
   uploadController,
-  getAllImages,
-} from "../controllers/images.controller.js";
+} from "../controllers/upload.controller.js";
 
 const uploadRouter = Router();
 
-uploadRouter.post("/", upload.single("image"), uploadController);
-uploadRouter.get("/", getAllImages);
+uploadRouter.post("/", upload.single("media"), uploadController);
 
 export default uploadRouter
