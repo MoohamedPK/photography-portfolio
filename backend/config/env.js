@@ -8,4 +8,6 @@ export const {
   CLOUDINARY_KEY_NAME,
   CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET,
+  EMAIL_PASS,
+  EMAIL_USER,
 } = process.env;

@@ -17,7 +17,6 @@ export const uploadController = async (req, res) => {
     // upload the file to coudinary
     const cloudUpload = await cloudinary.uploader.upload(req.file.path, {
       folder: "test",// the folder that you want to store the image in cloudinary (optional)
-
       resource_type: resourceType, // automatically detects image or video
     });
 
@@ -28,7 +27,8 @@ export const uploadController = async (req, res) => {
       url: cloudUpload.url,
       category: req.body.category,
       description: req.body.description,
-      title: req.body.title
+      title : req.body.title,
+      type: resourceType,
     });
 
     await uploadedImage.save();

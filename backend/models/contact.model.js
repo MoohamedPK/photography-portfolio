@@ -10,7 +10,7 @@ const contactSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    unique: true,
+    // unique: true,
     match: [/.+\@.+\..+/, 'Please enter a valide email'],
   },
   subject: {
@@ -22,6 +22,11 @@ const contactSchema = new mongoose.Schema({
   message : {
     type: String,
     trim: true,
+  },
+
+  sessionDate : {
+    type: Date,
+    required: true
   },
   createdAt: {
     type: Date,
