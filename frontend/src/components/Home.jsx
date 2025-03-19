@@ -3,7 +3,7 @@ import Image from "../assets/images/header-large.jpg"
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import {useGSAP} from "@gsap/react"
-import About from "../components/About";
+import Button from "../common/Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -76,13 +76,10 @@ function Home() {
             Welcome to my lens <br /> where light, emotion, and creativity come
             to life
           </h1>
+
+          <Button text="Explore My Work" link="#featuredWork" />
         </div>
-
       </div>
-
-
-      {/*  */}
-      <About/>
     </div>
   );
 }

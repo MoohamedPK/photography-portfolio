@@ -70,7 +70,7 @@ function About() {
   });
 
   return (
-    <div className="w-full h-[450dvh] md:h-[350dvh] relative pt-[20vh]">
+    <div className="w-full h-[450dvh] md:h-[350dvh] relative pt-[20vh] text-white bg-black">
       <div className="aboutContainer">
         <div className="aboutHeader relative flex flex-col items-center perspective-distant">
           <div
@@ -81,15 +81,15 @@ function About() {
               ref={aboutImgRef}
               src={AboutImage}
               alt=""
-              className=" size-full object-cover "
+              className="aboutImage -skew-3 size-full object-cover "
             />
           </div>
 
           <div
             ref={aboutHeaderTextRef}
-            className="aboutHeaderText rotate-x-[40deg] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-5xl md:text-8xl uppercase font-bold z-20 w-full text-center"
+            className="aboutHeaderText mix-blend-difference rotate-x-[40deg] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-5xl md:text-8xl uppercase font-bold z-20 w-full text-center"
           >
-            <h1>About Abdou</h1>
+            <h1 className="">About Abdou</h1>
           </div>
         </div>
 
@@ -111,7 +111,7 @@ function About() {
 
         <div ref={galleryRef} className="abdouGallery mt-[20vh]">
           <div className="gallery-container">
-            <div className="gallery grid grid-cols-1 md:grid-cols-2 place-items-center  gap-y-20">
+            <div className="gallery grid grid-cols-1 md:grid-cols-2 place-items-center gap-y-20">
               {media
                 .filter((image) => {
                   return image.category === "about";
@@ -124,7 +124,7 @@ function About() {
                     <img
                       src={img.url}
                       alt="about image"
-                      className=" size-full object-cover"
+                      className="galleryImage size-full object-cover"
                     />
                   </div>
                 ))}

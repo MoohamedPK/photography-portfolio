@@ -18,4 +18,9 @@
 
 @layer utilities {
 
+  /*  */
+
+  .aboutImage, .galleryImage {
+    filter: grayscale();
+  }
 }

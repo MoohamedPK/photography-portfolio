@@ -78,6 +78,7 @@ function FeaturedWork() {
   // JUST FOR TESTING 
   return (
     <section
+      id="featuredWork"
       ref={sectionRef}
       className="relative w-full h-[134dvh] bg-black overflow-hidden"
     >
