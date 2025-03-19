@@ -82,7 +82,7 @@ function FeaturedWork() {
       className="relative w-full h-[134dvh] bg-black overflow-hidden"
     >
       <div className="text-xl md:text-3xl text-center uppercase font-bold py-[100px] text-white">
-        <h1>selected work</h1>
+        <h1>selected works</h1>
       </div>
 
       <div className="projects relative text-white md:size-2/3 mx-auto flex flex-col items-center">

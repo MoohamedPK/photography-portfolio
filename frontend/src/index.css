@@ -17,13 +17,5 @@
 }
 
 @layer utilities {
-  .img-mask img {
-    filter: grayscale();
-    transition: all 0.3s ;
-    
-  }
 
-  .img-mask:hover img {
-    filter: none;
-  }
 }

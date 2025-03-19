@@ -3,13 +3,17 @@ import getImagesAct from "./actions/getImages";
 
 
 const imagesSlice = createSlice({
-  name: "images",
+  name: "media",
   initialState: {
-    images: [],
+    media: [],
     error: "" | null,
     loading: "idle" | "pending" | "succeeded" | "failed",
   },
-  reducers: {},
+  reducers: {
+    cleanUpImagesState:  (state) => {
+      state.media = []
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(getImagesAct.pending, (state) => {
       state.error = null
@@ -19,7 +23,7 @@ const imagesSlice = createSlice({
     builder.addCase(getImagesAct.fulfilled, (state, action) => {
       state.error = null;
       state.loading = "succeeded";
-      state.images = action.payload.data
+      state.media = action.payload.data
     });
 
       builder.addCase(getImagesAct.rejected, (state,  action) => {
@@ -29,4 +33,5 @@ const imagesSlice = createSlice({
   }
 });
 
-export default imagesSlice.reducer
+export const {cleanUpImagesState} = imagesSlice.actions;
+export default imagesSlice.reducer;
