@@ -4,20 +4,27 @@ import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { useForm } from "react-hook-form";
 import {ScrollTrigger} from "gsap/all";
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import contactAction from "../store/contact/actions/contactAction";
+import EmailRes from "./EmailRes";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function Contact() {
 
   const dispatch = useDispatch();
+  const {message} = useSelector(state => state.contact);
   const {register, handleSubmit} = useForm()
+  const [emailResVisibility, setEmailResVisibility] = useState(false); 
+
 
   const onSubmit = (data) => {
-    dispatch(contactAction(data))
+    dispatch(contactAction(data)).then((data) => {
+      if (data.payload.success) {
+        setEmailResVisibility(true);
+      }
+    })
   }; 
-
 
   const formRef = useRef(null)
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -50,7 +57,7 @@ function Contact() {
   return (
     <div
       id="contact"
-      className="w-full h-[230dvh] bg-black text-white grid place-content-center pt-[8vh]"
+      className=" relative w-full h-[230dvh] bg-black text-white grid place-content-center pt-[8vh]"
     >
       <div className="headingText text-center text-[60px] md:text-[130px] font-bold uppercase">
         <h1>
@@ -130,6 +137,10 @@ function Contact() {
           </div>
         </div>
       </div>
+
+      {emailResVisibility && (
+        <EmailRes setEmailResVisibility={setEmailResVisibility} message={message}/>
+      )}
     </div>
   );
 }
