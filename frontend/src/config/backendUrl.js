@@ -1,1 +1,1 @@
-export const baseUrl = "http://localhost:3000/api";
+export const baseUrl = "photography-portfolio-production.up.railway.app";
