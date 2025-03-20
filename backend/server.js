@@ -6,7 +6,7 @@ import uploadRouter from "./routes/upload.route.js"
 import mediaRouter from "./routes/media.route.js"
 import cors from "cors"
 
-const app = express();
+const app = express();  
 app.use(cors())
 app.use(express.urlencoded({ extended: true, limit: "200mb" }));
 
