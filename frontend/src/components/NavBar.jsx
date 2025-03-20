@@ -32,8 +32,9 @@ function NavBar() {
   }, [isOpen]);
 
   return (
-    <div className="w-full h-[80px] fixed px-6 z-80 text-white">
+    <nav className="w-full h-[80px] fixed px-6 z-80 text-white">
       <header className="w-full h-full flex justify-between items-center">
+        
         <div className="logo ">
           <h1 className="text-4xl font-Wagon">HML</h1>
         </div>
@@ -42,7 +43,7 @@ function NavBar() {
           {navLinks.map((link, index) => (
             <div className="linkHolder relative" key={index}>
               <li className="px-3 py-1 hover:bg-white/80 hover:text-black transition-all duration-300">
-                <a href={link}>{link}</a>
+                <a href={link === "works" ? "#featuredWork" : "" | link === "about" ? "#about" : "" | link === "contact" ? "#contact" : ""}>{link}</a>
               </li>
             </div>
           ))}
@@ -63,7 +64,9 @@ function NavBar() {
                     key={index}
                   >
                     <li className="px-3 py-1 hover:bg-white/80 hover:text-black transition-all duration-300">
-                      <a href={link}>{link}</a>
+                      <a href={link === "works" ? "#featuredWork" : "" | link === "about" ? "#about" : "" | link === "contact" ? "#contact" : ""}>
+                        {link}
+                      </a>
                     </li>
                   </div>
                 ))}
@@ -74,7 +77,7 @@ function NavBar() {
           )}
         </div>
       </header>
-    </div>
+    </nav>
   );
 }
 

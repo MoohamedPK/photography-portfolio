@@ -54,8 +54,8 @@ function About() {
 
     imageMasks.forEach((mask) => {
       gsap.to(mask, {
-        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-        webkitClipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 90%)",
+        webkitClipPath: "polygon(0 0, 100% 0, 100% 100%, 0 90%)",
         duration: 5,
         x: 0,
         ease: "power2.out",
@@ -70,7 +70,7 @@ function About() {
   });
 
   return (
-    <div className="w-full h-[450dvh] md:h-[350dvh] relative pt-[20vh] text-white bg-black">
+    <div id="about" className="w-full h-[450dvh] md:h-[350dvh] relative pt-[20vh] text-white bg-black">
       <div className="aboutContainer">
         <div className="aboutHeader relative flex flex-col items-center perspective-distant">
           <div

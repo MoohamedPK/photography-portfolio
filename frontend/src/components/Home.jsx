@@ -56,6 +56,7 @@ function Home() {
         }, "0");
     }, [])
 
+
   return (
     <div
       id="content-holder"
@@ -71,7 +72,7 @@ function Home() {
         ref={textHolderRef}
         className="text-holder w-full text-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] invisible"
       >
-        <div className="text text-white/70 text-[25px] md:text-[70px] uppercase font-Robert">
+        <div className="text text-white/70 text-[25px] md:text-[70px] uppercase font-Robert font-bold">
           <h1 className="">
             Welcome to my lens <br /> where light, emotion, and creativity come
             to life
