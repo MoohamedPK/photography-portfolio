@@ -1,1 +1,1 @@
-export const baseUrl = "photography-portfolio-production.up.railway.app";
+export const baseUrl = "https://photography-portfolio-production.up.railway.app";
