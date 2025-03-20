@@ -2,12 +2,22 @@ import Button from "../common/Button";
 import {FaInstagram} from "react-icons/fa"
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
-import {useGSAP} from "@gsap/react";
+import { useForm } from "react-hook-form";
 import {ScrollTrigger} from "gsap/all";
+import {useDispatch} from "react-redux"
+import contactAction from "../store/contact/actions/contactAction";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function Contact() {
+
+  const dispatch = useDispatch();
+  const {register, handleSubmit} = useForm()
+
+  const onSubmit = (data) => {
+    dispatch(contactAction(data))
+  }; 
+
 
   const formRef = useRef(null)
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -54,26 +64,37 @@ function Contact() {
 
       {isFormVisible && (
         <div className="contactForm w-1/2 mx-auto mt-[15vh]">
-          <form ref={formRef} className="flex flex-col items-center space-y-7">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            ref={formRef}
+            className="flex flex-col items-center space-y-7"
+          >
             <input
-              className="input w-full py-3 px-5"
+              {...register("name")}
+              className="input w-full py-3 px-5 border border-white outline-0"
               type="text"
               placeholder="name"
+              required
             />
 
             <input
-              className="input w-full py-3 px-5"
+              {...register("email")}
+              className="input w-full py-3 px-5 border border-white outline-0"
               type="email"
               placeholder="email"
+              required
             />
 
             <textarea
-              className="input w-full py-3 px-5"
+              {...register("subject")}
+              className="input w-full py-3 px-5 border border-white outline-0"
               placeholder="subject"
+              required
             ></textarea>
 
             <textarea
-              className="input w-full py-3 px-5"
+              {...register("message")}
+              className="input w-full py-3 px-5 border border-white outline-0"
               placeholder="message (optional)"
             ></textarea>
 
@@ -81,8 +102,10 @@ function Contact() {
               Pick your session date
             </label>
             <input
-              className="input w-full py-3 px-5"
+              {...register("sessionDate")}
+              className="input w-full py-3 px-5 border border-white outline-0"
               placeholder="session date"
+              required
               type="date"
               id="date"
             />
