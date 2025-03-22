@@ -57,7 +57,11 @@ function Contact() {
   return (
     <div
       id="contact"
-      className=" relative w-full h-[230dvh] bg-black text-white grid place-content-center pt-[8vh]"
+      className={
+        isFormVisible
+          ? `relative w-full md:h-[200dvh] h-[180dvh] bg-black text-white grid place-content-center`
+          : "relative w-full md:h-[100dvh] h-[100dvh] bg-black text-white grid place-content-center"
+      }
     >
       <div className="headingText text-center text-[60px] md:text-[130px] font-bold uppercase">
         <h1>
@@ -70,11 +74,11 @@ function Contact() {
       </div>
 
       {isFormVisible && (
-        <div className="contactForm w-1/2 mx-auto mt-[15vh]">
+        <div className="contactForm md:w-1/2 w-full mx-auto mt-15">
           <form
             onSubmit={handleSubmit(onSubmit)}
             ref={formRef}
-            className="flex flex-col items-center space-y-7"
+            className="flex flex-col items-center space-y-7 "
           >
             <input
               {...register("name")}
@@ -122,10 +126,10 @@ function Contact() {
         </div>
       )}
 
-      <div className="contact-footer mt-[10vh]">
+      <div className="contact-footer mt-[100px]">
         <hr />
 
-        <div className="flex flex-col space-y-15 md:space-y-0 md:flex-row md:justify-between items-center pt-8">
+        <div className="flex justify-between items-center mx-5 md:space-y-0 pt-8">
           <div className="email">
             <a href="">abdouhaml@gmail.com</a>
           </div>
@@ -139,7 +143,10 @@ function Contact() {
       </div>
 
       {emailResVisibility && (
-        <EmailRes setEmailResVisibility={setEmailResVisibility} message={message}/>
+        <EmailRes
+          setEmailResVisibility={setEmailResVisibility}
+          message={message}
+        />
       )}
     </div>
   );

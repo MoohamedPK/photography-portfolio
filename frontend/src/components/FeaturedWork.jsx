@@ -4,7 +4,7 @@ import TestImg3 from "../assets/images/DSC07334.JPG";
 
 import gsap from "gsap";
 import {ScrollTrigger} from "gsap/all";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,31 +28,23 @@ function FeaturedWork() {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.set(imagePrevRef.current, {opacity: 0, duration:0.3, ease: "power2.inOut"});
+      gsap.set(imagePrevRef.current, {opacity: 0,duration:1 , ease: "power2.inOut"});
 
       const projects = gsap.utils.toArray('.project');
 
       gsap.set(projects, {opacity: 0, y: 20})
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          end: "-=200px",
-          scrub:2,
-        }
-      })
-
-      tl.to(projects, {
+      gsap.to(projects, {
         opacity: 1,
         y: 0,
         duration: 0.3,
         ease: "power2.inOut",
         stagger: 0.1,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+        }
       });
-    })
-    return () => ctx.revert(); // clean up the animation
   }, [])
 
   const handleMouseEnter = (e, imageSrc) => {
@@ -61,26 +53,30 @@ function FeaturedWork() {
 
     imagePrevRef.current.src = imageSrc;
 
-    gsap.to(imagePrevRef.current, {opacity: 1});
-    gsap.to('.project', {opacity: 0.3, duration: .2, ease: "power1.inOut"})
-    gsap.to(e.currentTarget, {opacity: 1, duration: .2, ease: "power1.inOut"})
+    const tl = gsap.timeline({});
+
+
+    tl.to(imagePrevRef.current, {opacity: 1}, 0)
+    .to('.project', {opacity: 0.3,}, 0)
+    .to(e.currentTarget, {opacity: 1,}, 0)
   }
 
   const handleMouseLeave = () => {
 
-    gsap.to(imagePrevRef.current, {
-      opacity: 0,
-    });
+    const tl = gsap.timeline();
 
-    gsap.to('.project', {opacity: 1, duration: .2, ease: "power1.inOut"})
+    tl.to(imagePrevRef.current, {
+      opacity: 0,
+    }, 0)
+
+    .to('.project', {opacity: 1,}, 0)
   }
 
-  // JUST FOR TESTING 
   return (
     <section
       id="featuredWork"
       ref={sectionRef}
-      className="relative w-full h-[134dvh] bg-black overflow-hidden"
+      className="relative w-full h-[110dvh] md:h-[134dvh] bg-black overflow-hidden"
     >
       <div className="text-xl md:text-3xl text-center uppercase font-bold py-[100px] text-white">
         <h1>selected works</h1>
@@ -111,74 +107,6 @@ function FeaturedWork() {
       </div>
     </section>
   );
-
-
-
-  // const container = useRef(null);
-  // const section = useRef(null);
-
-  // useEffect(() => {
-
-  //   if (!container.current || !section.current) return;
-
-  //   const sections = gsap.utils.toArray(".featured-item");
-
-  //   gsap.to(sections, {
-  //     xPercent: -100 * (sections.length - 1), // moves to the left based on the sections length
-  //     ease: "none",
-  //     scrollTrigger: {
-  //       trigger: container.current,
-  //       start: "top top",
-  //       end: `+=${section.current.scrollWidth}`,
-  //       scrub: true,
-  //       pin: true,
-  //       pinSpacing: true,
-  //     },
-  //   });
-
-  // }, [])
-
-  // return (
-  //   <div ref={container} className="h-[280vh] overflow-hidden">
-  //     <h1 className="text-2xl md:text-4xl font-bold uppercase pt-[10vh] pb-[20vh] text-center">
-  //       Featured Work
-  //     </h1>
-
-  //     <div ref={section} className="featured-grid flex w-[400vw] h-screen">
-  //       <div className="featured-item w-[50vw] h-screen bg-pink-300">
-  //         <img
-  //           className="w-[300px] h-[400px] object-cover"
-  //           src={TestImg}
-  //           alt=""
-  //         />
-  //       </div>
-
-  //       <div className="featured-item w-[50vw] h-screen bg-pink-300">
-  //         <img
-  //           className="w-[300px] h-[400px] object-cover"
-  //           src={TestImg}
-  //           alt=""
-  //         />
-  //       </div>
-
-  //       <div className="featured-item w-[50vw] h-screen bg-pink-300">
-  //         <img
-  //           className="w-[300px] h-[400px] object-cover"
-  //           src={TestImg}
-  //           alt=""
-  //         />
-  //       </div>
-
-  //       <div className="featured-item w-[50vw] h-screen bg-pink-300">
-  //         <img
-  //           className="w-[300px] h-[400px] object-cover"
-  //           src={TestImg}
-  //           alt=""
-  //         />
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
 }
 // mt-[10vh] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5
 export default FeaturedWork
