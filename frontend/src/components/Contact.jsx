@@ -59,8 +59,8 @@ function Contact() {
       id="contact"
       className={
         isFormVisible
-          ? `relative w-full md:h-[200dvh] h-[180dvh] bg-black text-white grid place-content-center`
-          : "relative w-full md:h-[100dvh] h-[100dvh] bg-black text-white grid place-content-center"
+          ? `relative w-full md:h-[230dvh] h-[180dvh] bg-black text-white grid place-content-center`
+          : "relative w-full md:h-[130dvh] h-[100dvh] bg-black text-white grid place-content-center"
       }
     >
       <div className="headingText text-center text-[60px] md:text-[130px] font-bold uppercase">

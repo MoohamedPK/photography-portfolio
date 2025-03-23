@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import AboutImage from "../assets/images/about pic.jpg"
 import gsap from "gsap"
@@ -16,61 +16,61 @@ function About() {
   const aboutHeaderImgRef = useRef(null);
   const aboutHeaderTextRef = useRef(null);
   const aboutTextRef = useRef(null);
-
+  const galleryImgRef = useRef(null);
 
   useGSAP(() => {
 
     if (!aboutHeaderImgRef.current || !aboutHeaderTextRef.current) return;
+
+    gsap.set([aboutHeaderImgRef.current, aboutHeaderTextRef.current], {
+      autoAlpha: 0,
+    })
 
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".aboutHeader",
         start: "top 80%",
         end: "bottom center",
-        scrub: 2,
       },
     });
 
     tl.to([aboutHeaderImgRef.current, aboutHeaderTextRef.current], {
+      autoAlpha: 1,
       rotateX: 0,
       duration: 2,
-      ease: "power2.inOut",
+      ease: "power2.inOut"
     })
     
   })
 
-  useGSAP(() => {
-    if (!galleryRef.current) return;
+  useEffect(() => {
 
-    const imageMasks = gsap.utils.toArray(".about-image-mask");
+    // const imgsMask = gsap.utils.toArray(".about-image-mask");
 
-    if (imageMasks.length === 0) return;
+    if (!galleryImgRef.current) return;
 
-    gsap.set(imageMasks, {
-      clipPath: "polygon(0 0, 0 0, 0 0, 0 0)",
-      x: -300,
-      webkitClipPath: "polygon(0 0, 0 0, 0 0, 0 0)", // Better compatibility
+    gsap.set(galleryImgRef.current, { opacity: 0, xPercent: 100 });
+
+    gsap.to(".galleryImage", {
+      opacity: 1,
+      xPercent: 0,
+      duration: 1,
+      ease: "power2.inOut",
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: ".gallery",
+        start: "top 80%",
+      },
     });
 
-    imageMasks.forEach((mask) => {
-      gsap.to(mask, {
-        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 90%)",
-        webkitClipPath: "polygon(0 0, 100% 0, 100% 100%, 0 90%)",
-        duration: 5,
-        x: 0,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: mask,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: 2,
-        },
-      });
-    });
-  });
+    ScrollTrigger.refresh()
+  }, []);
 
   return (
-    <div id="about" className="w-full h-[450dvh] md:h-[350dvh] relative pt-[20vh] text-white bg-black">
+    <div
+      id="about"
+      className="w-full h-[430dvh] md:h-[350dvh] relative pt-[200px] text-white bg-black"
+    >
       <div className="aboutContainer">
         <div className="aboutHeader relative flex flex-col items-center perspective-distant">
           <div
@@ -81,7 +81,7 @@ function About() {
               ref={aboutImgRef}
               src={AboutImage}
               alt=""
-              className="aboutImage -skew-3 size-full object-cover "
+              className="aboutImage -skew-3 size-full object-cover"
             />
           </div>
 
@@ -95,12 +95,9 @@ function About() {
 
         <div
           ref={aboutTextRef}
-          className="aboutText px-2 md:px-0 mt-[20vh] text-center flex justify-center text-2xl leading-9 font-Wagon"
+          className="aboutText px-2 md:px-0 mt-[100px] text-center flex justify-center text-2xl leading-9 font-Wagon"
         >
-          <p
-            className="aboutParagraph max-w-[400px]"
-          
-          >
+          <p className="aboutParagraph max-w-[400px]">
             This is me Abdo, a passionate photographer, filmmaker, and video
             editor with a keen eye for storytelling. I bring over 6 years of
             experience in the world of photography and branded content. Whether
@@ -109,7 +106,7 @@ function About() {
           </p>
         </div>
 
-        <div ref={galleryRef} className="abdouGallery mt-[20vh]">
+        <div ref={galleryRef} className="abdouGallery mt-[200px]">
           <div className="gallery-container">
             <div className="gallery grid grid-cols-1 md:grid-cols-2 place-items-center gap-y-20">
               {media
@@ -122,6 +119,7 @@ function About() {
                     className="about-image-mask w-[300px] h-[400px]"
                   >
                     <img
+                      ref={galleryImgRef}
                       src={img.url}
                       alt="about image"
                       className="galleryImage size-full object-cover"

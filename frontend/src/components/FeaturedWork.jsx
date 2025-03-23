@@ -1,7 +1,6 @@
 import TestImg from "../assets/images/mee.jpg.JPG";
 import TestImg2 from "../assets/images/DSC07180.JPG";
 import TestImg3 from "../assets/images/DSC07334.JPG";
-
 import gsap from "gsap";
 import {ScrollTrigger} from "gsap/all";
 import { useEffect, useRef } from "react";
@@ -46,30 +45,38 @@ function FeaturedWork() {
         }
       });
   }, [])
-
+  
+  const projects = gsap.utils.toArray('.project');
   const handleMouseEnter = (e, imageSrc) => {
 
     if(!imagePrevRef.current) return;
 
+    if (imagePrevRef.current.src !== imageSrc) {
+      imagePrevRef.current.src = imageSrc;
+    }
+
+    gsap.set(imagePrevRef.current, {autoAlpha: 0, scale: 0.3})
+    gsap.to(imagePrevRef.current, {autoAlpha: 1, scale: 1, duration: 1, ease: "power3.inOut"})
     imagePrevRef.current.src = imageSrc;
 
-    const tl = gsap.timeline({});
+    
+    const tl = gsap.timeline();
 
+    tl.to(projects, {autoAlpha: 0.3, duration: .4, ease: "power2.inOut"})
+    .to(e.currentTarget, {autoAlpha: 1, duration: .4, ease: "power2.inOut"}, "-=0.3")
 
-    tl.to(imagePrevRef.current, {opacity: 1}, 0)
-    .to('.project', {opacity: 0.3,}, 0)
-    .to(e.currentTarget, {opacity: 1,}, 0)
   }
 
   const handleMouseLeave = () => {
-
     const tl = gsap.timeline();
 
-    tl.to(imagePrevRef.current, {
-      opacity: 0,
-    }, 0)
-
-    .to('.project', {opacity: 1,}, 0)
+    tl.to(projects, {
+      autoAlpha:1,
+      duration: 0.4,
+      ease: "power2.inOut",
+    })
+    
+    gsap.to(imagePrevRef.current, {autoAlpha: 0, duration: 0.4, ease: "power2.inOut"})
   }
 
   return (
@@ -86,7 +93,7 @@ function FeaturedWork() {
         <div className="image-preview absolute top-0 left-0 size-full">
           <img
             ref={imagePrevRef}
-            src={TestImg}
+            src={null}
             alt=""
             className="object-cover size-full brightness-75"
           />
@@ -96,7 +103,7 @@ function FeaturedWork() {
           <div
             onMouseLeave={handleMouseLeave}
             onMouseEnter={(e) => handleMouseEnter(e, item.image)}
-            className="project z-20 text-center cursor-pointer hover:bg-white hover:text-black w-full my-auto py-3 text-xl md:text-3xl uppercase transition-all duration-300"
+            className="project z-20 text-center cursor-pointer w-full my-auto py-3 text-xl md:text-3xl uppercase hover:bg-white hover:text-black transition-colors duration-300"
             key={index}
           >
             <div className="project-title">
@@ -108,5 +115,5 @@ function FeaturedWork() {
     </section>
   );
 }
-// mt-[10vh] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5
+
 export default FeaturedWork

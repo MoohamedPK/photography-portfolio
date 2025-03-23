@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import Image from "../assets/images/header-large.jpg"
+import Image from "../assets/images/WhatsApp Image 2025-03-22 at 16.33.59_8219df68.jpg"
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import {useGSAP} from "@gsap/react"
