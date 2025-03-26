@@ -14,8 +14,10 @@ export const getAllMedia = async (req, res) => {
 }
 
 export const getMediaByCategory = async (req, res) => {
+  console.log(req.params.id)
     try {
-        const targetMedia = await ImageUpload.find({category: req.params.category})
+        const targetMedia = await ImageUpload.find({_id: req.params.id})
+        console.log(targetMedia);
         res.status(200).json({success: true, data: targetMedia});
 
     } catch (error) {

@@ -20,5 +20,5 @@ app.use('/api/media', mediaRouter)
 
 app.listen(PORT, () => {
     connectDb();
-    console.log(`server run at port ${PORT}` );
+    console.log(`server run at port ${PORT}` )
 });

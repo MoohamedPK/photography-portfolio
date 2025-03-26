@@ -8,7 +8,7 @@ import {
 const mediaRouter = Router();
 
 mediaRouter.get("/", getAllMedia); // get all the images and videos;
-mediaRouter.get("/:category", getMediaByCategory); // get all the images and videos ;
-mediaRouter.get("/type/:type", getMediaByType); // get all the images and videos;
+mediaRouter.get("/:id", getMediaByCategory); // get all the images and videos ;
+// mediaRouter.get("/type/:type", getMediaByType); // get all the images and videos;
 
 export default mediaRouter;

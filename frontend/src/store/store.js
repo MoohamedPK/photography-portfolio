@@ -4,7 +4,7 @@ import contactSlice from "./contact/contactSlice"
 
 const store = configureStore({
     reducer: {
-        images : imagesSlice,
+        media : imagesSlice,
         contact: contactSlice,
     }
 })

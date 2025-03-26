@@ -1,32 +1,44 @@
 import mongoose from "mongoose" 
 
 const uploadSchema = new mongoose.Schema({
-    url: {
-        type: String,
-        required: true
-    },
-
-    category: {
+  assets: [
+    {
+      url: {
         type: String,
         required: true,
-    },
-
-    title: {
+      },
+      public_id: {
         type: String,
         required: true,
-    },
-
-    description : {
+      },
+      resource_type: {
         type: String,
-        required : true,
+        enum: ["image", "video"],
+      },
     },
+  ],
 
-    type: {
-        type: String,
-        enum: ["image", "video"]
-    }
-    
-})
+  thumbnail: String,
+
+  category: {
+    type: String,
+    required: true,
+  },
+
+  title: {
+    type: String,
+    required: true,
+  },
+
+  description: {
+    type: String,
+  },
+
+  type: {
+    type: String,
+    enum: ["image", "video"],
+  },
+});
 
 const ImageUpload = mongoose.model("Images", uploadSchema);
 export default ImageUpload;

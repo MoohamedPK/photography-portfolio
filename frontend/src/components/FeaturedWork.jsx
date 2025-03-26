@@ -1,28 +1,16 @@
-import TestImg from "../assets/images/mee.jpg.JPG";
-import TestImg2 from "../assets/images/DSC07180.JPG";
-import TestImg3 from "../assets/images/DSC07334.JPG";
 import gsap from "gsap";
 import {ScrollTrigger} from "gsap/all";
 import { useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import getImageById from "../store/images/actions/getImageById";
+import {useNavigate} from "react-router-dom"
 
 gsap.registerPlugin(ScrollTrigger);
 
+function FeaturedWork({media}) {
 
-const items = [
-  { title: "Dreams in Focus", image: TestImg, place: "new york", year: 2025 },
-  { title: "Visual Poetry", image: TestImg2, place: "beni mellal", year: 2023 },
-  { title: "Surreal Perspectives", image: TestImg3, place: "casablanca", year: 2024 },
-  { title: "The Hustle & Flow", image: TestImg, place: "texas", year: 2022 },
-  { title: "Neon Nights", image: TestImg3, place: "las veags", year: 2024 },
-  { title: "Concrete Jungle", image: TestImg2, place: "rabat", year: 2021 },
-  { title: "Lost in Nature", image: TestImg2, place: "rabat", year: 2021 },
-  { title: "Cityscapes & Skylines", image: TestImg2, place: "rabat", year: 2021 },
-  { title: "Frozen in Time", image: TestImg3, place: "rabat", year: 2021 },
-  { title: "Shadows & Light", image: TestImg, place: "rabat", year: 2021 },
-];
-
-function FeaturedWork() {
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const imagePrevRef = useRef(null);
   const sectionRef = useRef(null);
 
@@ -30,6 +18,8 @@ function FeaturedWork() {
       gsap.set(imagePrevRef.current, {opacity: 0,duration:1 , ease: "power2.inOut"});
 
       const projects = gsap.utils.toArray('.project');
+
+      if (!projects.length || !sectionRef.current) return;
 
       gsap.set(projects, {opacity: 0, y: 20})
 
@@ -42,13 +32,14 @@ function FeaturedWork() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
+          toggleActions: "play none none reverse"
         }
       });
   }, [])
   
-  const projects = gsap.utils.toArray('.project');
   const handleMouseEnter = (e, imageSrc) => {
-
+    
+    const projects = gsap.utils.toArray(".project");
     if(!imagePrevRef.current) return;
 
     if (imagePrevRef.current.src !== imageSrc) {
@@ -58,7 +49,6 @@ function FeaturedWork() {
     gsap.set(imagePrevRef.current, {autoAlpha: 0, scale: 0.3})
     gsap.to(imagePrevRef.current, {autoAlpha: 1, scale: 1, duration: 1, ease: "power3.inOut"})
     imagePrevRef.current.src = imageSrc;
-
     
     const tl = gsap.timeline();
 
@@ -68,6 +58,7 @@ function FeaturedWork() {
   }
 
   const handleMouseLeave = () => {
+    const projects = gsap.utils.toArray(".project");
     const tl = gsap.timeline();
 
     tl.to(projects, {
@@ -78,6 +69,13 @@ function FeaturedWork() {
     
     gsap.to(imagePrevRef.current, {autoAlpha: 0, duration: 0.4, ease: "power2.inOut"})
   }
+
+  
+  const handleImageId = (id) => {
+    dispatch(getImageById(id)).then(() => {
+      navigate("/project")
+    })
+  };
 
   return (
     <section
@@ -99,10 +97,11 @@ function FeaturedWork() {
           />
         </div>
 
-        {items.map((item, index) => (
+        {media.map((item, index) => (
           <div
+            onClick={() => handleImageId(item._id)}
             onMouseLeave={handleMouseLeave}
-            onMouseEnter={(e) => handleMouseEnter(e, item.image)}
+            onMouseEnter={(e) => handleMouseEnter(e, item.thumbnail)}
             className="project z-20 text-center cursor-pointer w-full my-auto py-3 text-xl md:text-3xl uppercase hover:bg-white hover:text-black transition-colors duration-300"
             key={index}
           >

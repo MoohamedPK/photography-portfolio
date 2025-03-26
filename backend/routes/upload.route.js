@@ -6,6 +6,6 @@ import {
 
 const uploadRouter = Router();
 
-uploadRouter.post("/", upload.single("media"), uploadController);
+uploadRouter.post("/", upload.array("media", 10), uploadController);
 
 export default uploadRouter

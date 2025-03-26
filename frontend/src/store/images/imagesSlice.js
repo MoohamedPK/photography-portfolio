@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import getImagesAct from "./actions/getImages";
-
+import getImageById from "./actions/getImageById";
 
 const imagesSlice = createSlice({
   name: "media",
@@ -10,9 +10,9 @@ const imagesSlice = createSlice({
     loading: "idle" | "pending" | "succeeded" | "failed",
   },
   reducers: {
-    cleanUpImagesState:  (state) => {
-      state.media = []
-    }
+    // cleanUpImagesState:  (state) => {
+    //   state.media = []
+    // }
   },
   extraReducers: (builder) => {
     builder.addCase(getImagesAct.pending, (state) => {
@@ -30,8 +30,27 @@ const imagesSlice = createSlice({
       state.error = action.payload.message
       state.loading = "failed"
     })
+
+
+    //GET IMAGE BY ID 
+    builder.addCase(getImageById.pending, (state) => {
+      state.error = null;
+      state.loading = "pending";
+    });
+
+    builder.addCase(getImageById.fulfilled, (state, action) => {
+      state.error = null;
+      state.loading = "succeeded";
+      console.log(action.payload);
+      state.media = action.payload
+    });
+
+    builder.addCase(getImageById.rejected, (state, action) => {
+      state.error = action.payload.message;
+      state.loading = "failed";
+    });
   }
 });
 
-export const {cleanUpImagesState} = imagesSlice.actions;
+// export const {cleanUpImagesState} = imagesSlice.actions;
 export default imagesSlice.reducer;

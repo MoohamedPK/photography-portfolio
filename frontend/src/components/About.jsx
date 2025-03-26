@@ -1,22 +1,24 @@
 import { useRef, useEffect } from "react";
-import { useSelector } from "react-redux";
 import AboutImage from "../assets/images/about pic.jpg"
+import {
+  Image1,
+  Image2,
+  Image3,
+  Image4,
+} from "../assets/images/About/aboutImgs";
 import gsap from "gsap"
 import {ScrollTrigger} from "gsap/all"
 import { useGSAP } from "@gsap/react";
-
 
 gsap.registerPlugin(ScrollTrigger);
 
 function About() {
 
-  const {media} = useSelector((state) => state.images);
   const galleryRef = useRef(null);
   const aboutImgRef = useRef(null);
   const aboutHeaderImgRef = useRef(null);
   const aboutHeaderTextRef = useRef(null);
   const aboutTextRef = useRef(null);
-  const galleryImgRef = useRef(null);
 
   useGSAP(() => {
 
@@ -43,15 +45,15 @@ function About() {
     
   })
 
-  useEffect(() => {
+  useGSAP(() => {
 
-    // const imgsMask = gsap.utils.toArray(".about-image-mask");
+    const galleryImages = gsap.utils.toArray(".galleryImage");
 
-    if (!galleryImgRef.current) return;
+    if (!galleryImages.length) return;
 
-    gsap.set(galleryImgRef.current, { opacity: 0, xPercent: 100 });
+    gsap.set(galleryImages, { opacity: 0, xPercent: 100 });
 
-    gsap.to(".galleryImage", {
+    gsap.to(galleryImages, {
       opacity: 1,
       xPercent: 0,
       duration: 1,
@@ -60,11 +62,11 @@ function About() {
       scrollTrigger: {
         trigger: ".gallery",
         start: "top 80%",
+        toggleActions: "play none none reverse"
       },
     });
 
-    ScrollTrigger.refresh()
-  }, []);
+  });
 
   return (
     <div
@@ -106,26 +108,38 @@ function About() {
           </p>
         </div>
 
-        <div ref={galleryRef} className="abdouGallery mt-[200px]">
+        <div ref={galleryRef} className="abdouGallery mt-[200px] overflow-x-hidden">
           <div className="gallery-container">
             <div className="gallery grid grid-cols-1 md:grid-cols-2 place-items-center gap-y-20">
-              {media
-                .filter((image) => {
-                  return image.category === "about";
-                })
-                .map((img, index) => (
-                  <div
-                    key={index}
-                    className="about-image-mask w-[300px] h-[400px]"
-                  >
-                    <img
-                      ref={galleryImgRef}
-                      src={img.url}
-                      alt="about image"
-                      className="galleryImage size-full object-cover"
-                    />
-                  </div>
-                ))}
+
+              <div className="about-image-mask w-[300px] h-[400px]">
+                <img
+                  src={Image1}
+                  alt="about image"
+                  className="galleryImage size-full object-cover"
+                />
+              </div>
+              <div className="about-image-mask w-[300px] h-[400px]">
+                <img
+                  src={Image2}
+                  alt="about image"
+                  className="galleryImage size-full object-cover"
+                />
+              </div>
+              <div className="about-image-mask w-[300px] h-[400px]">
+                <img
+                  src={Image3}
+                  alt="about image"
+                  className="galleryImage size-full object-cover"
+                />
+              </div>
+              <div className="about-image-mask w-[300px] h-[400px]">
+                <img
+                  src={Image4}
+                  alt="about image"
+                  className="galleryImage size-full object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>

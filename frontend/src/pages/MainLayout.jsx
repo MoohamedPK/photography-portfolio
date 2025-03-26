@@ -3,22 +3,23 @@ import Home from "../components/Home"
 import About from "../components/About"
 import LenisSmoothScroll from "../services/LenisSmoothScroll"
 import FeaturedWork from "../components/FeaturedWork"
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import getImagesAct from "../store/images/actions/getImages"
 import { useEffect } from "react"
-import { cleanUpImagesState } from "../store/images/imagesSlice"
+// import { cleanUpImagesState } from "../store/images/imagesSlice"
 import Contact from "../components/Contact"
 
 function MainLayout() {
 
   const dispatch = useDispatch();
-  
+  const {media} = useSelector(state => state.media);
+
   useEffect(() => {
     dispatch(getImagesAct());
 
-    return () => {
-      dispatch(cleanUpImagesState());
-    }
+    // return () => {
+    //   dispatch(cleanUpImagesState());
+    // }
   }, [dispatch])
   
   return (
@@ -26,7 +27,7 @@ function MainLayout() {
       <NavBar/>
       <Home/>
       <About/>
-      <FeaturedWork/>
+      <FeaturedWork media={media}/>
       <Contact/>
     </LenisSmoothScroll>
   )
