@@ -74,7 +74,7 @@ function ProjectDetails() {
 
             <div
               ref={imageDivRef}
-              className="gallery flex flex-col items-center w-screen sm:h-[300dvh] md:h-[400dvh] lg:h-[450dvh]"
+              className="gallery flex flex-col items-center w-screen h-[300dvh] md:h-[400dvh] lg:h-[450dvh]"
             >
               {media.assets.map((img, index) => (
                 <div className="image md:w-[700px] md:h-[600px]">
