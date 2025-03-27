@@ -6,7 +6,6 @@ import FeaturedWork from "../components/FeaturedWork"
 import {useDispatch, useSelector} from "react-redux"
 import getImagesAct from "../store/images/actions/getImages"
 import { useEffect } from "react"
-// import { cleanUpImagesState } from "../store/images/imagesSlice"
 import Contact from "../components/Contact"
 
 function MainLayout() {
@@ -17,9 +16,6 @@ function MainLayout() {
   useEffect(() => {
     dispatch(getImagesAct());
 
-    // return () => {
-    //   dispatch(cleanUpImagesState());
-    // }
   }, [dispatch])
   
   return (

@@ -46,11 +46,9 @@ function About() {
   })
 
   useGSAP(() => {
-
+    
     const galleryImages = gsap.utils.toArray(".galleryImage");
-
     if (!galleryImages.length) return;
-
     gsap.set(galleryImages, { opacity: 0, xPercent: 100 });
 
     gsap.to(galleryImages, {

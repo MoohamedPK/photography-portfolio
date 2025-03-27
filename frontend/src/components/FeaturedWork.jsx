@@ -69,12 +69,9 @@ function FeaturedWork({media}) {
     
     gsap.to(imagePrevRef.current, {autoAlpha: 0, duration: 0.4, ease: "power2.inOut"})
   }
-
   
   const handleImageId = (id) => {
-    dispatch(getImageById(id)).then(() => {
-      navigate("/project")
-    })
+      navigate(`/project/${id}`)
   };
 
   return (

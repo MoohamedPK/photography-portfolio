@@ -6,14 +6,12 @@ const imagesSlice = createSlice({
   name: "media",
   initialState: {
     media: [],
+    currentMedia: [],
     error: "" | null,
     loading: "idle" | "pending" | "succeeded" | "failed",
   },
-  reducers: {
-    // cleanUpImagesState:  (state) => {
-    //   state.media = []
-    // }
-  },
+  reducers: {},
+
   extraReducers: (builder) => {
     builder.addCase(getImagesAct.pending, (state) => {
       state.error = null
@@ -31,7 +29,6 @@ const imagesSlice = createSlice({
       state.loading = "failed"
     })
 
-
     //GET IMAGE BY ID 
     builder.addCase(getImageById.pending, (state) => {
       state.error = null;
@@ -41,8 +38,7 @@ const imagesSlice = createSlice({
     builder.addCase(getImageById.fulfilled, (state, action) => {
       state.error = null;
       state.loading = "succeeded";
-      console.log(action.payload);
-      state.media = action.payload
+      state.currentMedia = action.payload
     });
 
     builder.addCase(getImageById.rejected, (state, action) => {
@@ -52,5 +48,4 @@ const imagesSlice = createSlice({
   }
 });
 
-// export const {cleanUpImagesState} = imagesSlice.actions;
 export default imagesSlice.reducer;
