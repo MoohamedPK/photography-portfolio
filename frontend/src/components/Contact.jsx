@@ -1,5 +1,5 @@
 import Button from "../common/Button";
-import {FaInstagram} from "react-icons/fa"
+import {FaInstagram, FaWhatsapp} from "react-icons/fa"
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { useForm } from "react-hook-form";
@@ -134,9 +134,13 @@ function Contact() {
             <a href="">abdouhaml@gmail.com</a>
           </div>
 
-          <div className="social">
+          <div className="social flex gap-x-5">
             <a target="_blank" href="https://www.instagram.com/_abdou_hml/">
               <FaInstagram size={30} />
+            </a>
+
+            <a target="_blank" href="https://www.instagram.com/_abdou_hml/">
+              <FaWhatsapp size={30} />
             </a>
           </div>
         </div>

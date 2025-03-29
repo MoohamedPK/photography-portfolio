@@ -29,6 +29,8 @@ function ProjectDetails() {
 
       const images = gsap.utils.toArray(".image")
       
+      if (!images) return 
+
       images.forEach((image) => {
 
         gsap.set(image, {
@@ -48,7 +50,7 @@ function ProjectDetails() {
         });
 
       })
-    }, imageDivRef)
+    })
 
     return () => ctx.revert();
   })
@@ -57,10 +59,9 @@ function ProjectDetails() {
     <section className="w-full bg-black text-white overflow-hidden">
       <div className="container ">
         {currentMedia.map((media, index) => (
-          <>
+          <div key={index}>
             <div
-              key={index}
-              className="w-full h-screen space-y-10 text-center pt-12"
+              className="w-full h-screen flex flex-col justify-center space-y-10 text-center"
             >
               <h1 className="font-bold uppercase text-7xl" key={media._id}>
                 {media.title}
@@ -77,7 +78,7 @@ function ProjectDetails() {
               className="gallery flex flex-col items-center w-screen h-[300dvh] md:h-[400dvh] lg:h-[450dvh]"
             >
               {media.assets.map((img, index) => (
-                <div className="image md:w-[700px] md:h-[600px]">
+                <div key={index} className="image md:w-[700px] md:h-[600px]">
                   <img
                     src={img.url}
                     alt=""
@@ -86,7 +87,7 @@ function ProjectDetails() {
                 </div>
               ))}
             </div>
-          </>
+          </div>
         ))}
       </div>
     </section>

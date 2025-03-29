@@ -7,7 +7,7 @@ import Button from "../common/Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function Home() {
+function Hero() {
 
     const imageMaskRef = useRef(null);
     const textHolderRef = useRef(null);
@@ -85,4 +85,4 @@ function Home() {
   );
 }
 
-export default Home
+export default Hero
