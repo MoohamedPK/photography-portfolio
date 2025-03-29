@@ -1,5 +1,6 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import AboutImage from "../assets/images/about pic.jpg"
+import React from "react";
 import {
   Image1,
   Image2,
